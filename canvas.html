@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+<!-- #canvas {display:none;} -->
+</style>
+
+</head>
+<body>
+<canvas id="canvas" width="600" height="400"></canvas>
+<img id="client_avatar"\>
+
+<script>
+
+$(document).ready(function() {
+   var canvas = document.getElementById('canvas');
+   var context = canvas.getContext('2d');
+   var imageObj = new Image();
+
+   imageObj.onload = function() {
+      context.drawImage(imageObj, 0, 0, 800, 400);
+	  context.font = "30pt Calibri";
+		 context.fillStyle ="white";
+         context.fillText("Text from Object.onload!", 10, 90);
+	  
+      var pngUrl = canvas.toDataURL();
+      console.log(pngUrl);
+      $('#client_avatar').attr('src', pngUrl);
+   };
+
+   imageObj.crossOrigin = 'anonymous'; //not necessary, if image hosted on same server
+   imageObj.src = 'https://i.imgur.com/Q6aZlme.jpg';
+});
+
+
+</script>
+</body>
+</html>
